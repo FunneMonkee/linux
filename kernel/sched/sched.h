@@ -95,6 +95,8 @@ struct cpuidle_state;
 #include "cpupri.h"
 #include "cpudeadline.h"
 
+#include "css_rq.h"
+
 /* task_struct::on_rq states: */
 #define TASK_ON_RQ_QUEUED	1
 #define TASK_ON_RQ_MIGRATING	2
@@ -210,6 +212,11 @@ static inline int rt_policy(int policy)
 	return policy == SCHED_FIFO || policy == SCHED_RR;
 }
 
+static inline int css_policy(int policy)
+{
+	return policy == SCHED_CSS;
+}
+
 static inline int dl_policy(int policy)
 {
 	return policy == SCHED_DEADLINE;
@@ -218,7 +225,8 @@ static inline int dl_policy(int policy)
 static inline bool valid_policy(int policy)
 {
 	return idle_policy(policy) || fair_policy(policy) ||
-		rt_policy(policy) || dl_policy(policy);
+		rt_policy(policy) || dl_policy(policy) ||
+		css_policy(policy);
 }
 
 static inline int task_has_idle_policy(struct task_struct *p)
@@ -1188,6 +1196,7 @@ struct rq {
 	struct sched_dl_entity	ext_server;
 #endif
 
+	struct css_rq 		css;
 	struct sched_dl_entity	fair_server;
 
 #ifdef CONFIG_FAIR_GROUP_SCHED
@@ -2516,6 +2525,7 @@ struct affinity_context {
 
 extern s64 update_curr_common(struct rq *rq);
 
+//TODO_LUIS no queue mask
 struct sched_class {
 
 #ifdef CONFIG_UCLAMP_TASK
@@ -2736,6 +2746,7 @@ extern struct sched_class __sched_class_lowest[];
 
 extern const struct sched_class stop_sched_class;
 extern const struct sched_class dl_sched_class;
+extern const struct sched_class css_sched_class;
 extern const struct sched_class rt_sched_class;
 extern const struct sched_class fair_sched_class;
 extern const struct sched_class idle_sched_class;

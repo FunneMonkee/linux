@@ -7201,7 +7201,8 @@ enqueue_task_fair(struct rq *rq, struct task_struct *p, int flags)
 	int h_nr_idle = task_has_idle_policy(p);
 	int h_nr_runnable = 1;
 	int task_new = !(flags & ENQUEUE_WAKEUP);
-	int rq_h_nr_queued = rq->cfs.h_nr_queued;
+	//int rq_h_nr_queued = rq->cfs.h_nr_queued;
+	int rq_h_nr_queued = 1; 
 	u64 slice = 0;
 
 	if (task_is_throttled(p) && enqueue_throttled_task(p))

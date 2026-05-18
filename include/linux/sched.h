@@ -53,6 +53,7 @@
 #ifndef COMPILE_OFFSETS
 #include <generated/rq-offsets.h>
 #endif
+#include "../../kernel/sched/css_task.h"
 
 /* task_struct member predeclarations (sorted alphabetically): */
 struct audit_context;
@@ -869,6 +870,7 @@ struct task_struct {
 	unsigned int			rt_priority;
 
 	struct sched_entity		se;
+	struct sched_css_entity		css;
 	struct sched_rt_entity		rt;
 	struct sched_dl_entity		dl;
 	struct sched_dl_entity		*dl_server;
