@@ -1,0 +1,129 @@
+RUNNING EDF TEST
+54-parent
+55-t1
+56-t2
+57-t3
+
+=================================
+ EDF SIGSTOP Scheduler Test
+=================================
+
+[parent task] pid=54 setting EDF
+[    0.624378] [EDF] pid=54 runtime=0 deadline=1000000000000 period=0
+[    0.624421] [EDF] enqueue called
+[    0.624459] [EDF] enqueue pid=54 deadline=1000000000000
+[    0.624477] [EDF] switched_to pid=54
+[    0.624487] [EDF] switched_to PREEMPT curr=1000000000000 new=1000000000000
+[    0.625838] [EDF] dequeue called
+[    0.625870] [EDF] dequeue pid=54
+[    0.625884] [EDF] pick_next_task_css called
+[TASK 2] pid=56 setting EDF
+[TASK 2] runtime=1000000000 deadline=10000000 period=10000000
+[TASK 2] STOPPING
+[TASK 3] pid=57 setting EDF
+[TASK 3] runtime=2000000000 deadline=20000000 period=20000000
+[TASK 3] STOPPING
+[TASK 1] pid=55 setting EDF
+[TASK 1] runtime=4000000000 deadline=30000000 period=30000000
+[TASK 1] STOPPING
+------all tasks wait for signal here
+
+=================================
+ RELEASING ALL TASKS
+=================================
+
+[    0.632484] [EDF] enqueue called
+[    0.632507] [EDF] enqueue pid=54 deadline=1000000000000
+[    0.632537] [EDF] task_woken curr=55 new=54
+[    0.632545] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[    0.632593] [EDF] pick_next_task_css called
+[    0.632613] [EDF] PICK pid=54 deadline=1000000000000
+[    0.633952] [EDF] dequeue called
+[    0.633968] [EDF] dequeue pid=54
+[    0.633975] [EDF] pick_next_task_css called
+[    0.635804] [EDF] enqueue called
+[    0.635818] [EDF] enqueue pid=54 deadline=1000000000000
+[    0.635825] [EDF] task_woken curr=55 new=54
+[    0.635828] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[    0.635864] [EDF] pick_next_task_css called
+[    0.635869] [EDF] PICK pid=54 deadline=1000000000000
+[    0.635908] [EDF] dequeue called
+[    0.635918] [EDF] dequeue pid=54
+[    0.635923] [EDF] pick_next_task_css called
+[TASK 1] START -- task 1 preempt parent
+[TASK 1] running
+[    0.640164] [EDF] enqueue called
+[    0.640179] [EDF] enqueue pid=54 deadline=1000000000000
+[    0.640186] [EDF] task_woken curr=57 new=54
+[    0.640189] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[    0.640217] [EDF] pick_next_task_css called
+[    0.640241] [EDF] PICK pid=54 deadline=1000000000000
+[    0.640296] [EDF] dequeue called
+[    0.640307] [EDF] dequeue pid=54
+[    0.640312] [EDF] pick_next_task_css called
+[TASK 3] START -- task 3 preempt 1
+[TASK 3] running
+[    0.644290] [EDF] enqueue called
+[    0.644306] [EDF] enqueue pid=54 deadline=1000000000000
+[    0.644313] [EDF] task_woken curr=56 new=54
+[    0.644316] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[    0.644344] [EDF] pick_next_task_css called
+[    0.644349] [EDF] PICK pid=54 deadline=1000000000000
+[    0.644389] [EDF] dequeue called
+[    0.644399] [EDF] dequeue pid=54
+[    0.644404] [EDF] pick_next_task_css called
+[TASK 2] START -- task 2 preempt 3
+[TASK 2] running
+[TASK 1] running
+[TASK 2] running
+[TASK 3] running -- task 3 restarts (misstimed log)
+[TASK 2] END -- task 2 end
+[TASK 1] running -- task 1 restarts (misstimed log)
+[TASK 3] running
+[   14.360466] [EDF] enqueue called
+[   14.360500] [EDF] enqueue pid=54 deadline=1000000000000
+[   14.360514] [EDF] task_woken curr=56 new=54
+[   14.360518] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[   14.360563] [EDF] pick_next_task_css called
+[   14.360575] [EDF] PICK pid=54 deadline=1000000000000
+[   14.360779] [EDF] dequeue called
+[   14.360794] [EDF] dequeue pid=54
+[   14.360802] [EDF] pick_next_task_css called
+[TASK 1] running
+[TASK 3] running
+[TASK 1] running
+[TASK 3] END --task 3 end 
+[   23.498861] [EDF] enqueue called
+[   23.498918] [EDF] enqueue pid=54 deadline=1000000000000
+[   23.498937] [EDF] task_woken curr=57 new=54
+[   23.498941] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[   23.498984] [EDF] pick_next_task_css called
+[   23.498991] [EDF] PICK pid=54 deadline=1000000000000
+[   23.499200] [EDF] dequeue called
+[   23.499215] [EDF] dequeue pid=54
+[   23.499223] [EDF] pick_next_task_css called
+[TASK 1] running
+[TASK 1] running
+[TASK 1] running
+[TASK 1] END
+
+=================================
+ PARENT TASK FINISHED
+=================================
+
+[   32.610543] [EDF] enqueue called
+[   32.610613] [EDF] enqueue pid=54 deadline=1000000000000
+[   32.610637] [EDF] task_woken curr=55 new=54
+[   32.610642] [EDF] task_woken deadline comparison curr=1000000000000 new=1000000000000
+[   32.610692] [EDF] pick_next_task_css called
+[   32.610699] [EDF] PICK pid=54 deadline=1000000000000
+[   32.612266] [EDF] dequeue called
+[   32.612289] [EDF] dequeue pid=54
+[   32.612390] [EDF] enqueue called
+[   32.612396] [EDF] enqueue pid=54 deadline=1000000000000
+[   32.612430] [EDF] pick_next_task_css called
+[   32.612436] [EDF] PICK pid=54 deadline=1000000000000
+[   32.612526] [EDF] dequeue called
+[   32.612534] [EDF] dequeue pid=54
+[   32.612539] [EDF] pick_next_task_css called
+

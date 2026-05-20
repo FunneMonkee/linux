@@ -112,6 +112,11 @@ struct sched_attr {
 	__u64 sched_deadline;
 	__u64 sched_period;
 
+	/* SCHED_CSS */
+	__u64 sched_css_runtime;
+	__u64 sched_css_deadline;
+	__u64 sched_css_period;
+
 	/* Utilization hints */
 	__u32 sched_util_min;
 	__u32 sched_util_max;

@@ -253,6 +253,9 @@ static void __setscheduler_params(struct task_struct *p,
 	else if (fair_policy(policy))
 		__setparam_fair(p, attr);
 
+	if (css_policy(policy))
+		__setparam_css(p, attr);
+
 	/* rt-policy tasks do not have a timerslack */
 	if (rt_or_dl_task_policy(p)) {
 		p->timer_slack_ns = 0;
